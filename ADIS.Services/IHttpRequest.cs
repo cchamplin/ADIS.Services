@@ -26,6 +26,7 @@ namespace ADIS.Services
 
         string GetContent();
 
+        Uri Url { get; }
         string RawUrl { get; }
         string Host { get; }
         string RemoteIP { get; }

@@ -18,7 +18,7 @@ namespace ConsoleHostExample
             var host = new HostedAppHost();
             var cs = ComponentServices.Fetch("Services");
             var router = cs.Resolve<IServiceRouter>();
-            router.Add("/test", null);
+            router.Add("/test", new EchoResponder());
             host.Initialize();
             host.Start("http://localhost:82/");
             Console.WriteLine("Started listening");

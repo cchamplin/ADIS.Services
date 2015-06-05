@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IISServiceExample", "IISSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHostExample", "ConsoleHostExample\ConsoleHostExample.csproj", "{8A595782-2BB7-4778-B93E-50B2D04E949C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADIS.Services.Test", "ADIS.Services.Test\ADIS.Services.Test.csproj", "{FCA48F87-019F-4DCA-87D6-498F8F81E2B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{8A595782-2BB7-4778-B93E-50B2D04E949C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A595782-2BB7-4778-B93E-50B2D04E949C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A595782-2BB7-4778-B93E-50B2D04E949C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA48F87-019F-4DCA-87D6-498F8F81E2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA48F87-019F-4DCA-87D6-498F8F81E2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA48F87-019F-4DCA-87D6-498F8F81E2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA48F87-019F-4DCA-87D6-498F8F81E2B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

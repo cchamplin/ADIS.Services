@@ -59,7 +59,7 @@ namespace ADIS.Services
 
         public bool Handles(IHttpRequest request)
         {
-            if (matcher.IsMatch(request.RawUrl))
+            if (matcher.IsMatch(request.Url.AbsolutePath))
             {
                 switch (request.Method.ToUpper())
                 {

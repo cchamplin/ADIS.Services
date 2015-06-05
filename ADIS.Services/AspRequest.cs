@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using log4net;
+using ADIS.Core.ComponentServices.Services;
 
 namespace ADIS.Services
 {
@@ -18,6 +19,9 @@ namespace ADIS.Services
         protected readonly HttpRequestBase request;
         protected Dictionary<string, object> items;
         protected Dictionary<string, Cookie> cookies;
+        protected Dictionary<string, string> form;
+        protected Dictionary<string, string> queryParameters;
+        protected Dictionary<string, IPostedFile> files;
 
         public AspRequest(HttpContextBase context)
         {
@@ -146,6 +150,56 @@ namespace ADIS.Services
         public Uri UrlReferrer
         {
             get { return request.UrlReferrer; }
+        }
+
+        public string Authorization
+        {
+            get { return request.Headers["Authorization"]; }
+        }
+
+
+        public Uri Url
+        {
+            get { return request.Url; }
+        }
+
+
+        public Dictionary<string, Core.ComponentServices.Services.IPostedFile> Files
+        {
+            get
+            {
+                if (this.Files == null)
+                {
+                    this.files = new Dictionary<string, IPostedFile>();
+                    foreach (var file in request.Files.AllKeys)
+                    {
+                        var f = request.Files[file];
+                        this.files.Add(file, new PostedFile(f.FileName, f.ContentType, f.InputStream, 0, f.ContentLength));
+                    }
+                }
+                return this.files;
+            }
+        }
+
+        public Dictionary<string, string> Form
+        {
+            get {
+                if (this.form == null)
+                {
+                    this.form = new Dictionary<string, string>();
+                    var form = request.Form;
+                    foreach (var k in form.AllKeys)
+                    {
+                        this.form.Add(k, form[k]);
+                    }
+                }
+                return this.form;
+            }
+        }
+
+        public Dictionary<string, string> QueryParameters
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }
