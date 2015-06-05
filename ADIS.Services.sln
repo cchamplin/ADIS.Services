@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADIS.Services", "ADIS.Services\ADIS.Services.csproj", "{22031CA5-5ECF-4682-B462-4F79F5B2E083}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IISServiceExample", "IISServiceTest\IISServiceExample.csproj", "{CA55FAFF-0906-4537-ADA0-5415CD6AE7BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHostExample", "ConsoleHostExample\ConsoleHostExample.csproj", "{8A595782-2BB7-4778-B93E-50B2D04E949C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22031CA5-5ECF-4682-B462-4F79F5B2E083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22031CA5-5ECF-4682-B462-4F79F5B2E083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22031CA5-5ECF-4682-B462-4F79F5B2E083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22031CA5-5ECF-4682-B462-4F79F5B2E083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA55FAFF-0906-4537-ADA0-5415CD6AE7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA55FAFF-0906-4537-ADA0-5415CD6AE7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA55FAFF-0906-4537-ADA0-5415CD6AE7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA55FAFF-0906-4537-ADA0-5415CD6AE7BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A595782-2BB7-4778-B93E-50B2D04E949C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A595782-2BB7-4778-B93E-50B2D04E949C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A595782-2BB7-4778-B93E-50B2D04E949C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A595782-2BB7-4778-B93E-50B2D04E949C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
