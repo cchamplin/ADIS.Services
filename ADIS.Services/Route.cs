@@ -23,7 +23,22 @@ namespace ADIS.Services
         {
             this.rawPattern = pattern;
             this.method = method;
-            this.regexPattern = "^" + Regex.Escape(this.rawPattern).Replace(@"\*", ".*").Replace(@"\?", ".") + "$";
+
+            if (Regex.IsMatch(this.rawPattern,"\\<([a-zA-Z0-9_-]+)\\>\\<([a-zA-Z0-9_-]+)\\>"))
+            {
+                throw new Exception("Invalid route: route contains adjacent directory capture groups");
+            }
+            if (Regex.IsMatch(this.rawPattern, "\\[([a-zA-Z0-9_-]+)\\]\\[([a-zA-Z0-9_-]+)\\]"))
+            {
+                throw new Exception("Invalid route: route contains adjacent directory capture groups");
+            }
+
+            var matchPattern = Regex.Replace(Regex.Escape(this.rawPattern).Replace(@"\*", ".*").Replace(@"\?", "."), "\\/?\\<(?<partname>[a-zA-Z0-9_-]+)\\>\\/?", "\\/?(?<${partname}>[^\\/][a-zA-Z0-9\\._-]*)");
+
+            matchPattern = Regex.Replace(matchPattern, "\\/?\\\\\\[(?<partname>[a-zA-Z0-9_-]+)\\]", "\\/?(?<${partname}>[^\\/][a-zA-Z0-9\\._-]+)");
+            matchPattern += "\\/?";
+            this.regexPattern = "^" + matchPattern + "$";
+            System.Diagnostics.Debug.WriteLine(this.rawPattern + " " + matchPattern + " " + regexPattern);
             this.matcher = new Regex(regexPattern, RegexOptions.Compiled);
             this.handler = handler;
 
@@ -54,6 +69,21 @@ namespace ADIS.Services
         string IRoute.Route
         {
             get { return rawPattern; }
+        }
+
+        Dictionary<string, string> IRoute.GetComponents(Uri uri)
+        {
+            var match =matcher.Match(uri.AbsolutePath);
+            if (match.Success)
+            {
+                var results = new Dictionary<string, string>();
+                foreach (var name in matcher.GetGroupNames())
+                {
+                    results.Add(name,match.Groups[name].Value);
+                }
+                return results;
+            }
+            return null;
         }
 
 

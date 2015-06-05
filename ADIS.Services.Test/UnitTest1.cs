@@ -18,7 +18,7 @@ namespace ADIS.Services.Test
             var host = new HostedAppHost();
             var cs = ComponentServices.Fetch("Services");
             var router = cs.Resolve<IServiceRouter>();
-            router.Add("/test", new EchoResponder());
+            router.Add("/test/<g1>/[g2]", new EchoResponder());
             host.Initialize();
             host.Start("http://localhost:82/");
             Console.WriteLine("Started listening");
@@ -26,9 +26,9 @@ namespace ADIS.Services.Test
         [TestMethod]
         public void TestGet()
         {
-            //SetupServer();
+            SetupServer();
             var sr = new Serializer(typeof(FastSerialize.JsonSerializerGeneric));
-            var request = WebRequest.Create("http://localhost:82/test");
+            var request = WebRequest.Create("http://localhost:82/test/merf/perf");
             request.Method = "GET";
             var response = (HttpWebResponse)request.GetResponse();
             var responseData = sr.Deserialize<Response>(response.GetResponseStream());
@@ -53,7 +53,7 @@ namespace ADIS.Services.Test
         {
             //SetupServer();
             var sr = new Serializer(typeof(FastSerialize.JsonSerializerGeneric));
-            var request = WebRequest.Create("http://localhost:82/test");
+            var request = WebRequest.Create("http://localhost:82/test/merf/ferf");
             request.Method = "POST";
             var postData = "item1=test&item2=testmore";
             var encoded = Encoding.UTF8.GetBytes(postData);

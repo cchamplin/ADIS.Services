@@ -43,11 +43,14 @@ namespace ADIS.Services
                 {
                     files = new Dictionary<string, IPostedFile>();
                     form = new Dictionary<string, string>();
-                    if (request.ContentType.StartsWith("multipart/form-data"))
+                    if (request.ContentType != null)
                     {
-                       // form = new WebROCollection();
-                        LoadMultiPart();
-                       // form.Protect();
+                        if (request.ContentType.StartsWith("multipart/form-data"))
+                        {
+                            // form = new WebROCollection();
+                            LoadMultiPart();
+                            // form.Protect();
+                        }
                     }
                 }
                 return files;
@@ -294,16 +297,20 @@ namespace ADIS.Services
                 if (form == null)
                 {
                     files = new Dictionary<string, IPostedFile>();
-                    if (request.ContentType.StartsWith("multipart/form-data"))
+                    if (request.ContentType != null)
                     {
-                        // form = new WebROCollection();
-                        LoadMultiPart();
-                        // form.Protect();
+                        if (request.ContentType.StartsWith("multipart/form-data"))
+                        {
+                            // form = new WebROCollection();
+                            LoadMultiPart();
+                            // form.Protect();
+                        }
+                        else
+                        {
+                            LoadWwwForm();
+                        }
                     }
-                    else
-                    {
-                        LoadWwwForm();
-                    }
+                    
                 }
                 return form;
             }
