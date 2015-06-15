@@ -22,7 +22,7 @@ namespace ADIS.Services
         protected Dictionary<string, string> form;
         protected Dictionary<string, string> queryParameters;
         protected Dictionary<string, IPostedFile> files;
-
+        protected string data;
         public AspRequest(HttpContextBase context)
         {
             this.request = context.Request;
@@ -111,6 +111,15 @@ namespace ADIS.Services
             set
             {
                 throw new NotImplementedException();
+            }
+        }
+        public string Data
+        {
+            get
+            {
+                if (this.data == null)
+                this.data = GetContent();
+                return data;
             }
         }
 

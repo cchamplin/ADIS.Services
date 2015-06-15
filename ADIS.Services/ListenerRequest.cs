@@ -17,6 +17,7 @@ namespace ADIS.Services
         protected Dictionary<string,IPostedFile> files;
         protected Dictionary<string, Cookie> cookies;
         protected Dictionary<string, string> form;
+        protected string data;
         //protected Dictionary<string, object> items;
         public ListenerRequest(HttpListenerContext context)
         {
@@ -241,6 +242,15 @@ namespace ADIS.Services
                 {
                     return reader.ReadToEnd();
                 }
+        }
+        public string Data
+        {
+            get
+            {
+                if (this.data == null)
+                    this.data = GetContent();
+                return data;
+            }
         }
 
         public string RawUrl

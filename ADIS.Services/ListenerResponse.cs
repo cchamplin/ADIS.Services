@@ -103,5 +103,10 @@ namespace ADIS.Services
                 response.KeepAlive = value;
             }
         }
+
+        public void AddCookie(Cookie cookie)
+        {
+            response.Cookies.Add(cookie);
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ADIS.Services
 {
-    public interface IResponse
+    public interface IResponse : ADIS.Core.ComponentServices.Services.IResponse
     {
         object InternalRequest { get; }
         int StatusCode { get; set; }

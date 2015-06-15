@@ -41,9 +41,8 @@
     <Reference Include="ADIS.Core.Configuration">
       <HintPath>..\..\ADIS.Core\ADIS.Core.Configuration\bin\Debug\ADIS.Core.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="FastSerialize, Version=1.0.0.0, Culture=neutral, PublicKeyToken=abc7035e0ebf3a30, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\FastSerialize\FastSerialize\bin\Release4.0\FastSerialize.dll</HintPath>
+    <Reference Include="FastSerialize">
+      <HintPath>..\..\..\FastSerialize\FastSerialize\bin\Debug\FastSerialize.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

@@ -16,15 +16,15 @@ namespace ADIS.Services
         protected string rawPattern;
         protected string regexPattern;
         protected RequestMethod method;
-        protected IRequestHandler handler;
+        protected object handler;
         protected Regex matcher;
         protected ISerializer serializer;
-        public Route(string pattern, IRequestHandler handler, RequestMethod method)
+        private Route(string pattern, object handler, RequestMethod method)
         {
             this.rawPattern = pattern;
             this.method = method;
 
-            if (Regex.IsMatch(this.rawPattern,"\\<([a-zA-Z0-9_-]+)\\>\\<([a-zA-Z0-9_-]+)\\>"))
+            if (Regex.IsMatch(this.rawPattern, "\\<([a-zA-Z0-9_-]+)\\>\\<([a-zA-Z0-9_-]+)\\>"))
             {
                 throw new Exception("Invalid route: route contains adjacent directory capture groups");
             }
@@ -44,6 +44,13 @@ namespace ADIS.Services
 
             var services = ComponentServices.Fetch("Text");
             serializer = services.Resolve<ISerializer>();
+        }
+        public Route(string pattern, IRawRequestHandler handler, RequestMethod method) : this(pattern,(object)handler,method)
+        {
+        }
+        public Route(string pattern, IRequestHandler handler, RequestMethod method) : this(pattern,(object)handler,method)
+        {
+            
 
         }
         public bool HandlesPUT

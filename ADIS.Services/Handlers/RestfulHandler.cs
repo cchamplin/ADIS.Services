@@ -10,10 +10,24 @@ namespace ADIS.Services.Handlers
 {
     public class RestfulHandler : HandlerBase
     {
-        protected IRequestHandler handler;
+        protected object handler;
         protected IRequestRoute route;
         protected ISerializer serializer;
         public RestfulHandler(IRequestHandler handler, IRequestRoute route, ISerializer serializer)
+        {
+            System.Diagnostics.Debug.WriteLine("Initialize Restful Handler");
+            this.handler = handler;
+            this.route = route;
+            this.serializer = serializer;
+        }
+        public RestfulHandler(IRawRequestHandler handler, IRequestRoute route, ISerializer serializer)
+        {
+            System.Diagnostics.Debug.WriteLine("Initialize Restful Handler");
+            this.handler = handler;
+            this.route = route;
+            this.serializer = serializer;
+        }
+        internal RestfulHandler(object handler, IRequestRoute route, ISerializer serializer)
         {
             System.Diagnostics.Debug.WriteLine("Initialize Restful Handler");
             this.handler = handler;
@@ -28,8 +42,15 @@ namespace ADIS.Services.Handlers
         {
             if (handler != null)
             {
-                var result = handler.Handle(request, route);
-                response.Write(serializer.Serialize(result, true, false));
+                if (handler is IRequestHandler)
+                {
+                    var result = ((IRequestHandler)handler).Handle(request, route);
+                    response.Write(serializer.Serialize(result, true, false));
+                }
+                else if (handler is IRawRequestHandler)
+                {
+                    ((IRawRequestHandler)handler).Handle(request, route, response);
+                }
             }
             else
             {

@@ -22,6 +22,7 @@ namespace ConsoleHostExample
                 var sr = new StreamReader(file.Value.InputStream);
                 response.Files.Add(file.Value.FileName + ": " + sr.ReadToEnd());
             }
+            response.Data = request.Data;
             return response;
         }
     }

@@ -11,5 +11,6 @@ namespace ConsoleHostExample
         public string RequestType;
         public List<string> RequestParameters;
         public List<string> Files;
+        public string Data;
     }
 }
